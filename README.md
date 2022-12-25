@@ -2,15 +2,18 @@
 
 ![gin-framework](images/go-gin-snippets.png)
 
+This extension holds snippets to build web applications using gin framework in Go.
 
-## List of snippets
-gin-handler
-gin-handler-post
-gin-middleware-logger-json
-gin-middleware-cors
-gin-middleware-basic-auth
-gin-middleware
-### Middleware snippets
+## Usage
+
+You can install the extension from vscode marketplace or from here [Gin Framework Snippets](https://marketplace.visualstudio.com/items?itemName=Dhikilabs.gin-snippets). Once the extension has been installed, you can start typing in any `go` file and after `gin-` it should list out all the available snippets.
+
+![](images/usage.gif)
+
+
+## Currently available snippets snippets
+
+Following are the list of all available snippets.
 
 | Prefix (name)                                 | Snippet result                                          |
 |-----------------------------------------------|---------------------------------------------------------|
