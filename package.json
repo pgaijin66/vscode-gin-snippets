@@ -1,9 +1,9 @@
 {
   "name": "gin-snippets",
-  "displayName": "Gin Gramework Snippets`",
+  "displayName": "Gin Framework Snippets`",
   "description": "Collections of snippets for faster development of applications in Go using Gin framework.",
-  "version": "0.0.1",
-  "publisher": "pgaijin66",
+  "version": "0.1.0",
+  "publisher": "dhikilabs",
   "author": {
     "name": "Prabesh Thapa",
     "email": "sthapaprabesh2020@gmail.com",
@@ -32,6 +32,9 @@
     "autocomplete"
   ],
   "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:go"
+  ],
   "contributes": {
     "snippets": [
       {

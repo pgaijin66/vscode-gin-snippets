@@ -1,7 +1,6 @@
-# gin-snippets README
+# gin-snippets 
 
-![gin-framework](images/go-gin-snippets.png)
-
+This is the README for your extension "gin-snippets". After writing up a brief description, we recommend including the following sections.
 
 ## List of snippets
 gin-handler
