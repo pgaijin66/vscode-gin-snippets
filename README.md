@@ -29,6 +29,8 @@ gin-middleware
 | `gin-middleware-cors`       | Gin middleware to handle CORS.          |
 | `gin-response`       | JSON HTTP response in Gin.          |
 | `gin-load-config`       | Load config template from config.yaml file.          |
+| `gin-query-params-snippet`       | Gin query params snippet          |
+| `gin-header-set`       | Set headers         |
 
 
 ## Contributions

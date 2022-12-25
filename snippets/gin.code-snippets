@@ -204,6 +204,25 @@
 		  ],
 		  "description": "POST request handler for Gin"
 	  },
+	  "gin-query-params-snippet": {
+		"prefix": "gin-query-params-snippet",
+		"body": [
+			"${1:$TM_FILENAME_BASE}, ok := ctx.GetQuery(\"${1:$TM_FILENAME_BASE}\")",
+			"if !ok {",
+			"    log.Fatalf(\"No query param provided\")",
+			"}",
+			""
+		  ],
+		  "description": "Gin query params snippet"
+	  },
+	  "gin-header-set": {
+		"prefix": "gin-query-params-snippet",
+		"body": [
+			"ctx.Request.Header.Add(\"${1:$TM_FILENAME_BASE}\", \"\")",
+			""
+		  ],
+		  "description": "Set header"
+	  },
 	  "gin-response": {
 		"prefix": "gin-response",
 		"body": [
