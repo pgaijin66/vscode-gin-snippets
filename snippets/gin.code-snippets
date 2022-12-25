@@ -17,21 +17,14 @@
 		"prefix": "gin-handle-method-not-allowed-snippet",
 		"body": [
 			"// Prevent from calling methods not implemented.",
-			"router.HandleMethodNotAllowed = true",
-			"",
-			"",
-			"// Prevent from calling routes using methods which are not implemented.",
 			"router.NoMethod(func(ctx *gin.Context) {",
-			"ctx.JSON(http.StatusMethodNotAllowed, ",
-			"           gin.H{",
-			"           \"status_code\": \"http.StatusMethodNotAllowed\"",
-			"           \"is_success\": \"false\"",
-			"           \"data\": \"nil\"",
-			"           \"message\": \"Method not allowed\"",
-			"                }",
-			"      )",
-			"})",
-			"",
+			"    ctx.JSON(http.StatusMethodNotAllowed, gin.H{",
+			"                                             \"status_code\": \"http.StatusMethodNotAllowed\",",
+			"                                             \"is_success\": \"false\",",
+			"                                             \"data\": \"nil\",",
+			"                                             \"message\": \"Method Not Allowed\",",
+			"                                              })",
+			"}",
 			"",
 		],
 		"description": "Check methods not allowed snippet"
@@ -41,15 +34,13 @@
 		"body": [
 			"// Prevent from calling routes which are not implemented.",
 			"router.NoRoute(func(ctx *gin.Context) {",
-			"ctx.JSON(http.StatusNotFound, ",
-			"           gin.H{",
-			"           \"status_code\": \"http.StatusNotFound\"",
-			"           \"is_success\": \"false\"",
-			"           \"data\": \"nil\"",
-			"           \"message\": \"Route not found\"",
-			"                }",
-			"      )",
-			"})",
+			"    ctx.JSON(http.StatusNotFound, gin.H{",
+			"                                          \"status_code\": \"http.StatusNotFound\",",
+			"                                           \"is_success\": \"false\",",
+			"                                           \"data\": \"nil\",",
+			"                                           \"message\": \"Method Not Allowed\",",
+			"                                       })",
+			"}",
 			"",
 		],
 		"description": "Check routes not implemented snippet"
@@ -57,12 +48,12 @@
 	"gin-routes-snippet": {
 		"prefix": "gin-routes-snippet",
 		"body": [
-			"//endpoints",
+			"// register routes",
 			"router.GET(\"/ping\", healthcheck)",
 			"router.GET(\"/${1:$TM_FILENAME_BASE}\", get${1:$TM_FILENAME_BASE}Handler)",
 			"router.POST(\"/${1:$TM_FILENAME_BASE}\", create${1:$TM_FILENAME_BASE}Handler)",
-			"router.PUT(\"/${1:$TM_FILENAME_BASE}/:${1:$TM_FILENAME_BASE}-id\", update${1:$TM_FILENAME_BASE}Handler)",
-			"router.DELETE(\"/${1:$TM_FILENAME_BASE}/:${1:$TM_FILENAME_BASE}-id\", delete${1:$TM_FILENAME_BASE}Handler)",
+			"router.PUT(\"/${1:$TM_FILENAME_BASE}/:${1:$TM_FILENAME_BASE}-id\", update${1:$TM_FILENAME_BASE}ByIDHandler)",
+			"router.DELETE(\"/${1:$TM_FILENAME_BASE}/:${1:$TM_FILENAME_BASE}-id\", delete${1:$TM_FILENAME_BASE}ByIDHandler)",
 			"",
 		],
 		"description": "Register new routes snippet"
@@ -70,7 +61,7 @@
 	"gin-router-group-snippet": {
 		"prefix": "gin-router-group-snippet",
 		"body": [
-			"//endpoints",
+			"// Router group",
 			"router.Group(\"/${1:$TM_FILENAME_BASE}\")",
 			"",
 		],
@@ -79,7 +70,8 @@
 	"gin-run": {
 		"prefix": "gin-run",
 		"body": [
-			"router.Run(\":9090\")",
+			"// Starting to listen on port ${1:$TM_FILENAME_BASE}",
+			"router.Run(\":${1:$TM_FILENAME_BASE}\")",
 			""
 		  ],
 		  "description": "Run server"
@@ -87,9 +79,9 @@
 	"gin-middleware-generic": {
 		"prefix": "gin-middleware-generic",
 		"body": [
-			"func ${1:$TM_FILENAME_BASE}() gin.HandlerFunc{",
+			"func ${1:$TM_FILENAME_BASE}() gin.HandlerFunc {",
 			"    return func(c *gin.Context) {",
-			"}",
+			"    }",
 			"}",
 			""
 		  ],
@@ -215,22 +207,20 @@
 	  "gin-response": {
 		"prefix": "gin-response",
 		"body": [
-			"ctx.JSON(http.StatusMethodNotAllowed, ",
-			"           gin.H{",
-			"           \"status_code\": \"http.StatusOK\"",
-			"           \"is_success\": \"true\"",
-			"           \"data\": \"nil\"",
-			"           \"message\": \"Success\"",
-			"                }",
-			"      )",
+			"ctx.JSON(http.StatusOK, gin.H{",
+			"                          \"status_code\": \"http.StatusOK\"",
+			"                          \"is_success\": \"true\"",
+			"                          \"data\": \"nil\"",
+			"                          \"message\": \"Success\"",
+			"                })",
 			""
 		  ],
-		  "description": "HTTP response in gin"
+		  "description": "Generic HTTP response"
 	  },
-	  "gin-load-config": {
-		"prefix": "gin-load-config",
+	  "gin-load-config-snippet": {
+		"prefix": "gin-load-config-snippet",
 		"body": [
-			"// config.yaml",
+			"// loading configuration from config.yaml",
 			"/*",
 			"app:",
 			"  name: \"My app\"",
