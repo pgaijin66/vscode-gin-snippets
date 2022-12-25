@@ -7,7 +7,7 @@ deploy:
 	vsce publish
 
 .PHONY: login
-.package:
+.login:
 	vsce login dhikilabs
 
 package:

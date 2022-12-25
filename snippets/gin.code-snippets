@@ -6,11 +6,90 @@
 	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
 	// Placeholders with the same ids are connected.
 	// Example:
-	"gin-middleware": {
-		"prefix": "gin-middleware",
+	"gin-router": {
+		"prefix": "gin-router",
 		"body": [
-			"func ${1:$TM_FILENAME_BASE}() gin.HandlerFunc",
+			"router := gin.New()",
+		],
+		"description": "New Gin router snippet"
+	},
+	"gin-handle-method-not-allowed-snippet": {
+		"prefix": "gin-handle-method-not-allowed-snippet",
+		"body": [
+			"// Prevent from calling methods not implemented.",
+			"router.HandleMethodNotAllowed = true",
+			"",
+			"",
+			"// Prevent from calling routes using methods which are not implemented.",
+			"router.NoMethod(func(ctx *gin.Context) {",
+			"ctx.JSON(http.StatusMethodNotAllowed, ",
+			"           gin.H{",
+			"           \"status_code\": \"http.StatusMethodNotAllowed\"",
+			"           \"is_success\": \"false\"",
+			"           \"data\": \"nil\"",
+			"           \"message\": \"Method not allowed\"",
+			"                }",
+			"      )",
+			"})",
+			"",
+			"",
+		],
+		"description": "Check methods not allowed snippet"
+	},
+	"gin-handle-route-not-implemented-snippet": {
+		"prefix": "gin-handle-route-not-implemented-snippet",
+		"body": [
+			"// Prevent from calling routes which are not implemented.",
+			"router.NoRoute(func(ctx *gin.Context) {",
+			"ctx.JSON(http.StatusNotFound, ",
+			"           gin.H{",
+			"           \"status_code\": \"http.StatusNotFound\"",
+			"           \"is_success\": \"false\"",
+			"           \"data\": \"nil\"",
+			"           \"message\": \"Route not found\"",
+			"                }",
+			"      )",
+			"})",
+			"",
+		],
+		"description": "Check routes not implemented snippet"
+	},
+	"gin-routes-snippet": {
+		"prefix": "gin-routes-snippet",
+		"body": [
+			"//endpoints",
+			"router.GET(\"/ping\", healthcheck)",
+			"router.GET(\"/${1:$TM_FILENAME_BASE}\", get${1:$TM_FILENAME_BASE}Handler)",
+			"router.POST(\"/${1:$TM_FILENAME_BASE}\", create${1:$TM_FILENAME_BASE}Handler)",
+			"router.PUT(\"/${1:$TM_FILENAME_BASE}/:${1:$TM_FILENAME_BASE}-id\", update${1:$TM_FILENAME_BASE}Handler)",
+			"router.DELETE(\"/${1:$TM_FILENAME_BASE}/:${1:$TM_FILENAME_BASE}-id\", delete${1:$TM_FILENAME_BASE}Handler)",
+			"",
+		],
+		"description": "Register new routes snippet"
+	},
+	"gin-router-group-snippet": {
+		"prefix": "gin-router-group-snippet",
+		"body": [
+			"//endpoints",
+			"router.Group(\"/${1:$TM_FILENAME_BASE}\")",
+			"",
+		],
+		"description": "New routes group in gin"
+	},
+	"gin-run": {
+		"prefix": "gin-run",
+		"body": [
+			"router.Run(\":9090\")",
+			""
+		  ],
+		  "description": "Run server"
+	  },
+	"gin-middleware-generic": {
+		"prefix": "gin-middleware-generic",
+		"body": [
+			"func ${1:$TM_FILENAME_BASE}() gin.HandlerFunc{",
 			"    return func(c *gin.Context) {",
+			"}",
 			"}",
 			""
 		  ],
@@ -66,16 +145,16 @@
 		"prefix": "gin-middleware-cors",
 		"body": [
 			"func ${1:$TM_FILENAME_BASE}() gin.HandlerFunc {",
-			"    return func(c *gin.Context) {",
-			"        c.Writer.Header().Set(\"Access-Control-Allow-Origin\", \"*\")",
-			"        c.Writer.Header().Set(\"Access-Control-Allow-Credentials\", \"true\")",
-			"        c.Writer.Header().Set(\"Access-Control-Allow-Headers\", \"Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With\")",
-			"        c.Writer.Header().Set(\"Access-Control-Allow-Methods\", \"POST, OPTIONS, GET, PUT\")",
-			"        if c.Request.Method == \"OPTIONS\" {",
-			"            c.AbortWithStatus(204)",
+			"    return func(ctx *gin.Context) {",
+			"        ctx.Writer.Header().Set(\"Access-Control-Allow-Origin\", \"*\")",
+			"        ctx.Writer.Header().Set(\"Access-Control-Allow-Credentials\", \"true\")",
+			"        ctx.Writer.Header().Set(\"Access-Control-Allow-Headers\", \"Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With\")",
+			"        ctx.Writer.Header().Set(\"Access-Control-Allow-Methods\", \"POST, OPTIONS, GET, PUT\")",
+			"        if ctx.Request.Method == \"OPTIONS\" {",
+			"            ctx.AbortWithStatus(204)",
 			"            return",
 			"        }",
-			"        c.Next()",
+			"        ctx.Next()",
 			"        }",
 			"}",
 			""
@@ -136,7 +215,7 @@
 	  "gin-response": {
 		"prefix": "gin-response",
 		"body": [
-			"c.JSON(http.StatusMethodNotAllowed, ",
+			"ctx.JSON(http.StatusMethodNotAllowed, ",
 			"           gin.H{",
 			"           \"status_code\": \"http.StatusOK\"",
 			"           \"is_success\": \"true\"",

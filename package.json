@@ -1,13 +1,14 @@
 {
   "name": "gin-snippets",
-  "displayName": "Gin Framework Snippets`",
+  "displayName": "Gin Framework Snippets",
   "description": "Collections of snippets for faster development of applications in Go using Gin framework.",
-  "version": "0.1.0",
+  "version": "0.4.0",
+  "icon": "images/go-gin-snippets.png",
   "publisher": "dhikilabs",
   "author": {
     "name": "Prabesh Thapa",
     "email": "sthapaprabesh2020@gmail.com",
-    "url": "https://99devops.com"
+    "url": "https://dhikilabs.com"
   },
   "repository": {
     "type": "git",
