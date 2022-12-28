@@ -17,7 +17,6 @@ Following are the list of all available snippets.
 
 | Prefix (name)                                 | Snippet result                                          |
 |-----------------------------------------------|---------------------------------------------------------|
-gin-app
 | `gin-app`                  | Create simple app in Gin. 
 | `gin-router`                  | New Gin router snippet. 
 | `gin-handle-method-not-allowed-snippet`                  | Check methods not allowed snippet 
